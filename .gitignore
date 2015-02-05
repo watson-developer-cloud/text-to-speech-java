@@ -1,0 +1,6 @@
+bin/
+WebContent/WEB-INF/classes
+build/
+/output/webApp.war
+.DS_Store
+output/

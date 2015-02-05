@@ -1,0 +1,6 @@
+applications:
+- services:
+  - text-to-speech-service
+  name: text-to-speech-java
+  path: output/webApp.war
+  memory: 512M

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE xml>
+
+<project basedir="." default="build" name="WebApp">
+	<property environment="env" />
+	<property name="srcDir" value="." />
+	<property name="debuglevel" value="source,lines,vars" />
+	<property name="target" value="1.6" />
+	<property name="source" value="1.6" />
+	<property name="ARCHIVE_DIR" value="output" />
+	<property name="LIB_DIR" value="./lib" />
+	<property name="WEB_INF_LIB_DIR" value="./WebContent/WEB-INF/lib" />
+	<property name="warname" value="webApp.war" />
+	<path id="classpathDir">
+		<pathelement location="build/bin" />
+		<fileset dir="${LIB_DIR}">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${WEB_INF_LIB_DIR}">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+	<target name="init">
+		<mkdir dir="build" />
+		<mkdir dir="build/bin" />
+	</target>
+	<target name="clean">
+		<delete dir="build" />
+		<delete file="${ARCHIVE_DIR}/${warname}" />
+	</target>
+	<target name="build" depends="build-project,build-war" />
+	<target name="cleanall" depends="clean" />
+	<target name="build-project" depends="clean,init">
+		<echo message="${ant.project.name}: ${ant.file}" />
+		<javac debug="true" debuglevel="${debuglevel}" destdir="build/bin" source="${source}" target="${target}" includeantruntime="false">
+			<src path="src" />
+			<classpath refid="classpathDir" />
+		</javac>
+	</target>
+
+	<target name="build-war" depends="build-project">
+		<war destfile="${ARCHIVE_DIR}/${warname}" webxml="WebContent/WEB-INF/web.xml">
+			<webinf dir="WebContent/WEB-INF" />
+			<zipfileset dir="src" prefix="WEB-INF/src" />
+			<fileset dir="WebContent">
+				<include name="**/*" />
+			</fileset>
+			<lib dir="WebContent/WEB-INF/lib" />
+			<classes dir="build/bin" />
+		</war>
+	</target>
+
+</project>
