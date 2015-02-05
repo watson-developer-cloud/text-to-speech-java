@@ -63,31 +63,31 @@
    `DemoServlet.java`. You can use the following command to see the
    credentials:
 
-	    ```sh
-	    $ cf env <application-name>
-	    ```
+    ```sh
+    $ cf env <application-name>
+    ```
 
-	   Example output:
+   Example output:
 
-	    ```sh
-	    System-Provided:
-	    {
-	    "VCAP_SERVICES": {
-	      "text_to_speech": [{
-	          "credentials": {
-	            "url": "<url>",
-	            "password": "<password>",
-	            "username": "<username>"
-	          },
-	        "label": "text_to_speech",
-	        "name": "text-to-speech-service",
-	        "plan": "free"
-	     }]
-	    }
-	    }
-	    ```
+    ```sh
+    System-Provided:
+    {
+    "VCAP_SERVICES": {
+      "text_to_speech": [{
+          "credentials": {
+            "url": "<url>",
+            "password": "<password>",
+            "username": "<username>"
+          },
+        "label": "text_to_speech",
+        "name": "text-to-speech-service",
+        "plan": "free"
+     }]
+    }
+    }
+    ```
 
-  		You need to copy the `username`, `password`, and `url`.
+	You need to copy the `username`, `password`, and `url`.
 
 2. Install the [Liberty profile runtime][liberty] (for Mac OSX, check this
    [guide][liberty_mac]).
@@ -99,21 +99,6 @@
 5. Start the server.
 
 6. Go to `http://localhost:9080/app/` to see the running application.
-
-## Certificate Note
-
-  If you get certificate errors when hitting this service, for example:
-
-	PKIX path building failed: java.security.cert.CertPathBuilderException: PKIXCertPathBuilderImpl could not build a valid CertPath.; internal cause is:
-		java.security.cert.CertPathValidatorException: The certificate issued by CN=GeoTrust SSL CA - G2, O=GeoTrust Inc., C=US is not trusted; internal cause is: 
-		java.security.cert.CertPathValidatorException: Certificate chaining error
-	
-	then your runtime JRE does not include the latest GeoTrust certificate.
-	
-	The project includes a cacerts with this certificate already installed at: <ts-java>/WebContent/resources/.java-overlay/.java/jre/lib/security/cacerts that you can drop
-	into your JRE at <JAVA_HOME>/jre/lib/security to resolve this issue when running locally.
-	
-	The ANT build will automatically put this cacerts into a location where BlueMix will overlay it during deployment.	
 
 ## Troubleshooting
 
