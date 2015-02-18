@@ -1,3 +1,8 @@
+---
+declared-services:
+- text-to-speech-service:
+    type: text_to_speech
+    plan: free
 applications:
 - services:
   - text-to-speech-service
