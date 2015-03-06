@@ -31,6 +31,9 @@
 	<target name="build" depends="build-project,build-war" />
 	<target name="cleanall" depends="clean" />
 	<target name="build-project" depends="clean,init">
+		<copy todir="${ARCHIVE_DIR}">
+		  <fileset file="manifest.yml" />
+		</copy>
 		<echo message="${ant.project.name}: ${ant.file}" />
 		<javac debug="true" debuglevel="${debuglevel}" destdir="build/bin" source="${source}" target="${target}" includeantruntime="false">
 			<src path="src" />
