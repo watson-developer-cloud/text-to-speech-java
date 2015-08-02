@@ -1,3 +1,7 @@
+.no-scroll {
+  overflow: hidden;
+}
+
 .img-container img {
   width: 100%;
   height: auto;
@@ -37,6 +41,7 @@
 .header {
   padding-bottom:0px;
   margin-bottom: 0px;
+  position: relative;
 }
 .header h2 {
   font-weight: 400;
@@ -66,7 +71,7 @@
 
 .errorMsg {
   font-weight:bold;
-  color:red;
+  color: #FF5050;
 }
 .pause {
   display: none;

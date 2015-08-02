@@ -13,7 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/*global $:false */
+
+/*global $, VOICES, SAMPLE_TEXT */
 
 'use strict';
 
@@ -21,6 +22,18 @@ $(document).ready(function() {
   var audio = $('.audio').get(0),
     textArea = $('#textArea');
 
+  Object.keys(VOICES).forEach(function(key) {
+    $('<option>', { value : key })
+    .appendTo($('.select-voice'))
+    .text(VOICES[key]);
+  });
+
+  function updateSampleText() {
+    var lang = $('.select-voice').val().substr(0,5);
+    $('#textArea').text(SAMPLE_TEXT[lang]);
+  }
+  $('.select-voice').change(updateSampleText);
+  updateSampleText();
 
   // IE and Safari not supported disabled Speak button
   if ($('body').hasClass('ie') || $('body').hasClass('safari')) {
@@ -33,7 +46,7 @@ $(document).ready(function() {
 
   $('.audio').on('error', function () {
     $('.result').hide();
-    $('errorMgs').text('Error processing the request.');
+    $('.errorMgs').text('Error processing the request.');
     $('.errorMsg').css('color','red');
     $('.error').show();
   });
@@ -46,7 +59,7 @@ $(document).ready(function() {
   $('.download-button').click(function() {
     textArea.focus();
     if (validText(textArea.val())) {
-      window.location.href = '?download=true&' + $('form').serialize();
+      window.location.href = '/synthesize?download=true&' + $('form').serialize();
     }
   });
 
@@ -56,19 +69,37 @@ $(document).ready(function() {
 
     $('#textArea').focus();
     if (validText(textArea.val())) {
-      audio.setAttribute('src','?&' + $('form').serialize());
+      audio.setAttribute('src','/synthesize?' + $('form').serialize());
     }
   });
 
   function validText(text) {
-    if ($.trim(text)) {
-      $('.error').hide();
-      return true;
-    } else {
+    $('.error').hide();
+    $('.errorMsg').css('color','#5a5a5a');
+
+    if ($.trim(text).length === 0) {
       $('.errorMsg').text('Please enter the text you would like to synthesize in the text window.');
-      $('.errorMsg').css('color','#00b2ef');
+      $('.errorMsg').css('color','#5a5a5a');
       $('.error').show();
       return false;
     }
+
+    if (!containsAllLatin1(text)) {
+      $('.errorMsg').text('Language not supported. Please use only ISO 8859 characters');
+      $('.error').show();
+      return false;
+    }
+
+    return true;
   }
+
+  /**
+   * Check that the text doesn't contains non latin-1 characters.
+   * @param  String  The string to test
+   * @return true if the string is latin-1
+   */
+  function containsAllLatin1(str) {
+    return  /^[A-z\u00C0-\u00ff\s?@¿''\.,-\/#!$%\^&\*;:{}=\-_`~()0-9]+$/.test(str);
+  }
+
 });

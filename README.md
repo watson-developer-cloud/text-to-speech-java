@@ -4,7 +4,7 @@
 
 Give it a try! Click the button below to fork into IBM DevOps Services and deploy your own copy of this application on Bluemix.
 
-[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/watson-developer-cloud/text-to-speech-java)
+[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy)
 
 ## Getting Started
 
@@ -18,7 +18,7 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
   ```none
   applications:
   - services:
-    - text-to-speech-service
+    - text-to-speech-service-standard
     name: <application-name>
     path: output/webApp.war
     memory: 512M
@@ -35,7 +35,7 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
 
 5. Create the Text to Speech service in Bluemix.
   ```sh
-  $ cf create-service text_to_speech free text-to-speech-service
+  $ cf create-service text_to_speech standard text-to-speech-service-standard
   ```
 
 6. Download and install the [ant][ant] compiler.
@@ -55,15 +55,13 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
   $ cf push
   ```
 
-   See the full [Getting Started][getting_started] documentation for more
-   details, including code snippets and references.
 
 ## Running locally
 
   The application uses the WebSphere Liberty profile runtime as its server,
   so you need to download and install the profile as part of the steps below.
 
-1. Copy the credentials from your `text-to-speech-service` service in Bluemix to
+1. Copy the credentials from your `text-to-speech-service-standard` service in Bluemix to
    `DemoServlet.java`. You can use the following command to see the
    credentials:
 
@@ -84,8 +82,8 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
             "username": "<username>"
           },
         "label": "text_to_speech",
-        "name": "text-to-speech-service",
-        "plan": "free"
+        "name": "text-to-speech-service-standard",
+        "plan": "standard"
      }]
     }
     }
@@ -116,6 +114,7 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
 ## License
 
   This sample code is licensed under Apache 2.0. Full license text is available in [LICENSE](LICENSE).
+  The sample uses jQuery which is licensed under MIT
 
 ## Contributing
 
@@ -128,7 +127,6 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
 
 [service_url]: http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/text-to-speech.html
 [cloud_foundry]: https://github.com/cloudfoundry/cli
-[getting_started]: http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/getting_started/
 [sign_up]: https://apps.admin.ibmcloud.com/manage/trial/bluemix.html?cm_mmc=WatsonDeveloperCloud-_-LandingSiteGetStarted-_-x-_-CreateAnAccountOnBluemixCLI
 [liberty]: https://developer.ibm.com/wasdev/downloads/
 [liberty_mac]: http://www.stormacq.com/how-to-install-websphere-8-5-liberty-profile-on-mac/
