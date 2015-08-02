@@ -59,7 +59,7 @@ $(document).ready(function() {
   $('.download-button').click(function() {
     textArea.focus();
     if (validText(textArea.val())) {
-      window.location.href = '/synthesize?download=true&' + $('form').serialize();
+      window.location.href = '?download=true&' + $('form').serialize();
     }
   });
 
@@ -69,7 +69,7 @@ $(document).ready(function() {
 
     $('#textArea').focus();
     if (validText(textArea.val())) {
-      audio.setAttribute('src','/synthesize?' + $('form').serialize());
+      audio.setAttribute('src','?&' + $('form').serialize());
     }
   });
 
