@@ -18,9 +18,9 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
   ```none
   applications:
   - services:
-    - text-to-speech-service-standard
+    - text-to-speech-service
     name: <application-name>
-    path: output/webApp.war
+    path: webApp.war
     memory: 512M
   ```
 
@@ -35,7 +35,7 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
 
 5. Create the Text to Speech service in Bluemix.
   ```sh
-  $ cf create-service text_to_speech standard text-to-speech-service-standard
+  $ cf create-service text_to_speech standard text-to-speech-service
   ```
 
 6. Download and install the [ant][ant] compiler.
@@ -52,7 +52,7 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
 
 8. Push it live!
   ```sh
-  $ cf push
+  $ cf push -p outut/webApp.war
   ```
 
 
@@ -82,7 +82,7 @@ Give it a try! Click the button below to fork into IBM DevOps Services and deplo
             "username": "<username>"
           },
         "label": "text_to_speech",
-        "name": "text-to-speech-service-standard",
+        "name": "text-to-speech-service",
         "plan": "standard"
      }]
     }
