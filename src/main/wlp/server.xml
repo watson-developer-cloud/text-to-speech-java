@@ -1,0 +1,16 @@
+<server>
+
+    <featureManager>
+        <feature>jsp-2.3</feature>
+    </featureManager>
+
+    <httpEndpoint id="defaultHttpEndpoint"
+                  host="*"
+                  httpPort="9080" >
+        <tcpOptions soReuseAddr="true"/>
+    </httpEndpoint>
+
+    <application name="text2speech" context-root="/text2speech" location="${wlp.install.dir}/../${appLocation}" type="war">
+    </application>
+    
+</server>
