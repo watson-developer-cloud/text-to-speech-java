@@ -7,5 +7,5 @@ applications:
 - services:
   - text-to-speech-service
   name: text-to-speech-java
-  path: webApp.war
+  path: target/text-to-speech-1.0-SNAPSHOT.war
   memory: 512M
