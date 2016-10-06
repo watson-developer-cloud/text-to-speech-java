@@ -31,7 +31,7 @@
                     	<img src="images/app.png">
                     </div>
                     <div class="col-lg-6 col-xs-6">
-                        <h2>Text to Speech Python Starter Application</h2>
+                        <h2>Text to Speech Java Starter Application</h2>
                         <p>The Text to Speech service uses IBM's speech synthesis capabilities to convert English or Spanish text to an audio signal. The audio is streamed back to the client with minimal delay. The service can be accessed via a REST interface.</p>
                     </div>
                     <div class="col-lg-4 col-xs-4">
